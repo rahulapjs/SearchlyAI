@@ -1,5 +1,6 @@
 from pathlib import Path
-from PyPDF2 import PdfReader
+from pypdf import PdfReader
+
 
 
 def load_text_from_pdf(file_path: Path) -> str:

@@ -1,17 +1,20 @@
-import google.generativeai as genai
+from google import genai
 from typing import List
 from app.core.config import settings
 
-genai.configure(api_key=settings.GEMINI_API_KEY)
-
 
 def embed_texts(texts: List[str]) -> List[List[float]]:
+    client = genai.Client(api_key=settings.GEMINI_API_KEY)
     embeddings = []
+    
     for text in texts:
-        result = genai.embed_content(
-            model="models/embedding-001",
-            content=text,
-            task_type="retrieval_document"
+        result = client.models.embed_content(
+            model="text-embedding-004",
+            contents=text,
         )
-        embeddings.append(result["embedding"])
+        if hasattr(result, 'embeddings') and result.embeddings:
+             embeddings.append(result.embeddings[0].values)
+        elif hasattr(result, 'embedding'):
+             embeddings.append(result.embedding.values)
+        
     return embeddings
