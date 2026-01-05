@@ -36,6 +36,17 @@ jobs:
     - name: Run Flake8
       run: flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
 
-    # Uncomment when tests are added
-    # - name: Run Pytest
-    #   run: pytest
+  build-frontend:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./frontend
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+    - run: npm ci
+    - run: npm run lint
+
