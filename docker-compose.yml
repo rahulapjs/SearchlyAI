@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  backend:
+    build: 
+      context: ./backend
+    container_name: rag_backend
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/app
+      - ./backend/data:/app/data
+    env_file:
+      - backend/.env
+    environment:
+      - WATCHFILES_FORCE_POLLING=true
+    restart: unless-stopped
