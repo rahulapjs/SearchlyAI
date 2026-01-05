@@ -1,0 +1,12 @@
+from pathlib import Path
+from PyPDF2 import PdfReader
+
+
+def load_text_from_pdf(file_path: Path) -> str:
+    reader = PdfReader(str(file_path))
+    pages = [page.extract_text() or "" for page in reader.pages]
+    return "\n".join(pages)
+
+
+def load_text_from_txt(file_path: Path) -> str:
+    return file_path.read_text(encoding="utf-8", errors="ignore")
