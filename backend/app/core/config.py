@@ -4,7 +4,7 @@ from pydantic import BaseSettings
 
 class Settings(BaseSettings):
     # App
-    APP_NAME: str = "SemanticSearch AI"
+    APP_NAME: str = "SearchlyAI"
     ENV: str = "development"
 
     # Gemini

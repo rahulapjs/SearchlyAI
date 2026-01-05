@@ -1,6 +1,6 @@
-# RAG Search Engine Backend
+# SearchlyAI Backend
 
-This is the backend for a RAG (Retrieval-Augmented Generation) Search Engine built with FastAPI.
+This is the backend API for SearchlyAI, built with FastAPI.
 
 ## Structure
 - `app/api`: API route definitions
@@ -8,7 +8,6 @@ This is the backend for a RAG (Retrieval-Augmented Generation) Search Engine bui
 - `app/services`: Business logic (ingestion, chunking, embeddings, etc.)
 - `app/schemas`: Pydantic models
 - `app/utils`: Helper functions
-- `app/llm`: LLM abstractions (OpenAI, Gemini)
 
 ## Setup
 
@@ -24,7 +23,7 @@ This is the backend for a RAG (Retrieval-Augmented Generation) Search Engine bui
    ```
 
 3. Configure environment variables:
-   Copy `.env.example` to `.env` and fill in your API keys.
+   Copy `.env.example` to `.env` and fill in your API keys (Gemini API Key is required).
 
 4. Run the server:
    ```bash

@@ -11,7 +11,7 @@ from app.core.logging import setup_logging
 setup_logging()
 
 app = FastAPI(
-    title="SemanticSearch AI",
+    title="SearchlyAI",
     description="AI-powered semantic search engine using RAG",
     version="1.0.0"
 )
