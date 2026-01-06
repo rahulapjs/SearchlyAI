@@ -1,11 +1,10 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import './App.css';
 import { Ingester } from './components/Ingester';
 import { Chat } from './components/Chat';
-import { clearSession, getSessionId } from './api';
+import { clearSession } from './api';
 
 function App() {
-  const [sessionId] = useState(getSessionId());
 
   useEffect(() => {
     clearSession().catch(() => { });

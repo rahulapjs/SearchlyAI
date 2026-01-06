@@ -35,6 +35,7 @@ export const Chat = () => {
             };
             setHistory((prev) => [...prev, aiMsg]);
         } catch (err) {
+            console.error(err);
             setHistory((prev) => [...prev, { role: 'ai', content: 'Sorry, something went wrong.' }]);
         } finally {
             setLoading(false);
