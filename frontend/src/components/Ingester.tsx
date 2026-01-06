@@ -18,6 +18,7 @@ export const Ingester = ({ onIngestComplete }: IngesterProps) => {
             const res = await ingestDocument(e.target.files[0]);
             onIngestComplete(res.data.chunks_added);
         } catch (err) {
+            console.error(err);
             setError('Failed to upload file.');
         } finally {
             setLoading(false);
@@ -33,6 +34,7 @@ export const Ingester = ({ onIngestComplete }: IngesterProps) => {
             onIngestComplete(res.data.chunks_added);
             setUrl('');
         } catch (err) {
+            console.error(err);
             setError('Failed to ingest URL.');
         } finally {
             setLoading(false);
