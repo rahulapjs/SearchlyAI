@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { toast } from 'react-hot-toast';
 import { ingestDocument, ingestWeb } from '../api';
 
 interface IngesterProps {
@@ -14,12 +15,15 @@ export const Ingester = ({ onIngestComplete }: IngesterProps) => {
         if (!e.target.files?.[0]) return;
         setLoading(true);
         setError('');
+        const toastId = toast.loading('Uploading document...');
         try {
             const res = await ingestDocument(e.target.files[0]);
             onIngestComplete(res.data.chunks_added);
+            toast.success('Document uploaded successfully!', { id: toastId });
         } catch (err) {
             console.error(err);
             setError('Failed to upload file.');
+            toast.error('Failed to upload file.', { id: toastId });
         } finally {
             setLoading(false);
         }
@@ -29,13 +33,16 @@ export const Ingester = ({ onIngestComplete }: IngesterProps) => {
         if (!url) return;
         setLoading(true);
         setError('');
+        const toastId = toast.loading('Ingesting URL...');
         try {
             const res = await ingestWeb(url);
             onIngestComplete(res.data.chunks_added);
             setUrl('');
+            toast.success('URL ingested successfully!', { id: toastId });
         } catch (err) {
             console.error(err);
             setError('Failed to ingest URL.');
+            toast.error('Failed to ingest URL.', { id: toastId });
         } finally {
             setLoading(false);
         }
