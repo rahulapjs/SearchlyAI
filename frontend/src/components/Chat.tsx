@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from 'react';
+import { toast } from 'react-hot-toast';
 import { querySearch } from '../api';
 
 interface Message {
@@ -36,6 +37,7 @@ export const Chat = () => {
             setHistory((prev) => [...prev, aiMsg]);
         } catch (err) {
             console.error(err);
+            toast.error('Failed to get answer');
             setHistory((prev) => [...prev, { role: 'ai', content: 'Sorry, something went wrong.' }]);
         } finally {
             setLoading(false);

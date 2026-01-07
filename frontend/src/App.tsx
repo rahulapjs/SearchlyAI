@@ -3,6 +3,7 @@ import './App.css';
 import { Ingester } from './components/Ingester';
 import { Chat } from './components/Chat';
 import { clearSession } from './api';
+import { Toaster, toast } from 'react-hot-toast';
 
 function App() {
 
@@ -11,12 +12,19 @@ function App() {
   }, []);
 
   const handleManualClear = async () => {
-    await clearSession();
-    window.location.reload();
+    try {
+      await clearSession();
+      toast.success('Session cleared successfully');
+      setTimeout(() => window.location.reload(), 1000);
+    } catch (error) {
+      console.error(error);
+      toast.error('Failed to clear session');
+    }
   }
 
   return (
     <div className="app-container">
+      <Toaster position="top-right" />
       <header className="header glass">
         <div className="brand">
           🔍 SearchlyAI
